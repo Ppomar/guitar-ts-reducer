@@ -1,0 +1,7 @@
+
+
+export enum Types {
+    GUITAR_FETCH_GUITARS_DATA = "GUITAR_FETCH_GUITARS_DATA"
+};
+
+
