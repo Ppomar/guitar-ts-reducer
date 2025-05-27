@@ -9,12 +9,19 @@ import { fetchData } from "./helpers/common";
 import { Guitar } from "./types";
 import { setGuitarsData } from "./reducers/guitar/cart-actions";
 import GuitarContent from "./components/GuitarContent";
+import { db } from "./data/db";
 
 const GUITAR_API_URL = "http://localhost:5062/api/guitar";
 
 const initialState = async (dispatch: Dispatch<CartActions>) => {
   const guitars: Guitar[] = await fetchData(GUITAR_API_URL);
-  dispatch(setGuitarsData(guitars));
+
+  if(guitars) {
+    dispatch(setGuitarsData(guitars));
+  }
+  else {
+    dispatch(setGuitarsData(db));
+  }
 };
 
 const getGuitarRows = (guitars: Guitar[], dispatch: Dispatch<CartActions>) => {
